@@ -1,0 +1,27 @@
+# Python bytecode & environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+
+# Secrets & environment variables
+.env
+.env.*
+
+# Heavy raw & rendered video binaries (stored on Google Drive 1Br9196213j3f22k9P0p6M-A91X1n0n1d)
+*.mov
+*.mp4
+*.mkv
+*.avi
+*.wav
+*.mp3
+*.aac
+raw_cache/
+intermediate/
+
+# Temporary frame scratch files
+_tmp_*.jpg
+_cand_*.jpg
+*.log
