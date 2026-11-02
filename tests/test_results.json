@@ -1,0 +1,663 @@
+{
+  "verdict": "PASS",
+  "suite_1_video_masters": {
+    "passed": true,
+    "details": [
+      {
+        "id": "MTV_01",
+        "file": "MTV_01_1989_Michael_Jordan_Uncut_Practice_5994fps.mp4",
+        "status": "PASS",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "fps": "60000/1001",
+        "field_order": "progressive",
+        "audio_channels": 2,
+        "audio_sample_rate": 48000,
+        "video_duration_s": 43.043,
+        "audio_duration_s": 43.051,
+        "sync_delta_ms": 8.000000000002672,
+        "mean_volume_db": -18.5,
+        "max_volume_db": -0.0,
+        "is_progressive": true,
+        "is_5994fps": true,
+        "is_sync_le_35ms": true,
+        "is_stereo_48k": true
+      },
+      {
+        "id": "MTV_02",
+        "file": "MTV_02_2002_Kobe_Bryant_Shaq_vs_Kings_WCF_5994fps.mp4",
+        "status": "PASS",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "fps": "60000/1001",
+        "field_order": "progressive",
+        "audio_channels": 2,
+        "audio_sample_rate": 48000,
+        "video_duration_s": 44.611,
+        "audio_duration_s": 44.608,
+        "sync_delta_ms": 3.0000000000001137,
+        "mean_volume_db": -18.7,
+        "max_volume_db": -0.0,
+        "is_progressive": true,
+        "is_5994fps": true,
+        "is_sync_le_35ms": true,
+        "is_stereo_48k": true
+      },
+      {
+        "id": "MTV_03",
+        "file": "MTV_03_1990s_FOX_NFL_Sunday_Bradshaw_Howie_Long_5994fps.mp4",
+        "status": "PASS",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "fps": "60000/1001",
+        "field_order": "progressive",
+        "audio_channels": 2,
+        "audio_sample_rate": 48000,
+        "video_duration_s": 45.1451,
+        "audio_duration_s": 45.132,
+        "sync_delta_ms": 13.100000000001444,
+        "mean_volume_db": -19.2,
+        "max_volume_db": -0.0,
+        "is_progressive": true,
+        "is_5994fps": true,
+        "is_sync_le_35ms": true,
+        "is_stereo_48k": true
+      },
+      {
+        "id": "MTV_04",
+        "file": "MTV_04_2000_Air_Jordan_XI_XVI_Foot_Locker_Mall_Riot_5994fps.mp4",
+        "status": "PASS",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "fps": "60000/1001",
+        "field_order": "progressive",
+        "audio_channels": 2,
+        "audio_sample_rate": 48000,
+        "video_duration_s": 44.110733,
+        "audio_duration_s": 44.084,
+        "sync_delta_ms": 26.733000000000118,
+        "mean_volume_db": -18.5,
+        "max_volume_db": -0.0,
+        "is_progressive": true,
+        "is_5994fps": true,
+        "is_sync_le_35ms": true,
+        "is_stereo_48k": true
+      },
+      {
+        "id": "MTV_05",
+        "file": "MTV_05_1988_World_Series_As_Dodgers_and_80s_NFL_Gastineau_5994fps.mp4",
+        "status": "PASS",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "fps": "60000/1001",
+        "field_order": "progressive",
+        "audio_channels": 2,
+        "audio_sample_rate": 48000,
+        "video_duration_s": 43.076367,
+        "audio_duration_s": 43.085,
+        "sync_delta_ms": 8.633000000003221,
+        "mean_volume_db": -18.9,
+        "max_volume_db": -0.0,
+        "is_progressive": true,
+        "is_5994fps": true,
+        "is_sync_le_35ms": true,
+        "is_stereo_48k": true
+      },
+      {
+        "id": "UCF_01",
+        "file": "UCF_01_1988_Dorothea_Puente_Trial_3D_Model_Body_Bags_5994fps.mp4",
+        "status": "PASS",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "fps": "60000/1001",
+        "field_order": "progressive",
+        "audio_channels": 2,
+        "audio_sample_rate": 48000,
+        "video_duration_s": 46.112733,
+        "audio_duration_s": 46.113,
+        "sync_delta_ms": 0.2670000000009054,
+        "mean_volume_db": -19.6,
+        "max_volume_db": -0.0,
+        "is_progressive": true,
+        "is_5994fps": true,
+        "is_sync_le_35ms": true,
+        "is_stereo_48k": true
+      },
+      {
+        "id": "UCF_02",
+        "file": "UCF_02_1991_Sacramento_Good_Guys_Hostage_SWAT_Raid_5994fps.mp4",
+        "status": "PASS",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "fps": "60000/1001",
+        "field_order": "progressive",
+        "audio_channels": 2,
+        "audio_sample_rate": 48000,
+        "video_duration_s": 45.128417,
+        "audio_duration_s": 45.098,
+        "sync_delta_ms": 30.416999999999916,
+        "mean_volume_db": -19.8,
+        "max_volume_db": -0.0,
+        "is_progressive": true,
+        "is_5994fps": true,
+        "is_sync_le_35ms": true,
+        "is_stereo_48k": true
+      },
+      {
+        "id": "UCF_03",
+        "file": "UCF_03_2002_Jane_Doe_Dumpster_Forensic_Clay_Bust_5994fps.mp4",
+        "status": "PASS",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "fps": "60000/1001",
+        "field_order": "progressive",
+        "audio_channels": 2,
+        "audio_sample_rate": 48000,
+        "video_duration_s": 47.113733,
+        "audio_duration_s": 47.104,
+        "sync_delta_ms": 9.73300000000421,
+        "mean_volume_db": -20.2,
+        "max_volume_db": -0.0,
+        "is_progressive": true,
+        "is_5994fps": true,
+        "is_sync_le_35ms": true,
+        "is_stereo_48k": true
+      },
+      {
+        "id": "UCF_04",
+        "file": "UCF_04_1999_Sacramento_Synagogue_Arson_Terror_Case_5994fps.mp4",
+        "status": "PASS",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "fps": "60000/1001",
+        "field_order": "progressive",
+        "audio_channels": 2,
+        "audio_sample_rate": 48000,
+        "video_duration_s": 45.111733,
+        "audio_duration_s": 45.112,
+        "sync_delta_ms": 0.2670000000009054,
+        "mean_volume_db": -20.0,
+        "max_volume_db": -0.0,
+        "is_progressive": true,
+        "is_5994fps": true,
+        "is_sync_le_35ms": true,
+        "is_stereo_48k": true
+      },
+      {
+        "id": "UCF_05",
+        "file": "UCF_05_California_Megafire_Carr_Inferno_DC10_Drop_Paradise_Drone_5994fps.mp4",
+        "status": "PASS",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "fps": "60000/1001",
+        "field_order": "progressive",
+        "audio_channels": 2,
+        "audio_sample_rate": 48000,
+        "video_duration_s": 48.164783,
+        "audio_duration_s": 48.153,
+        "sync_delta_ms": 11.78300000000121,
+        "mean_volume_db": -20.1,
+        "max_volume_db": -0.0,
+        "is_progressive": true,
+        "is_5994fps": true,
+        "is_sync_le_35ms": true,
+        "is_stereo_48k": true
+      }
+    ]
+  },
+  "suite_2_thumbnails": {
+    "passed": true,
+    "details": {
+      "thumbnails": [
+        {
+          "vid": "MTV_01",
+          "file": "MTV_01_YT_Thumb_1280x720.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "status": "PASS"
+        },
+        {
+          "vid": "MTV_02",
+          "file": "MTV_02_YT_Thumb_1280x720.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "status": "PASS"
+        },
+        {
+          "vid": "MTV_03",
+          "file": "MTV_03_YT_Thumb_1280x720.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "status": "PASS"
+        },
+        {
+          "vid": "MTV_04",
+          "file": "MTV_04_YT_Thumb_1280x720.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "status": "PASS"
+        },
+        {
+          "vid": "MTV_05",
+          "file": "MTV_05_YT_Thumb_1280x720.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "status": "PASS"
+        },
+        {
+          "vid": "UCF_01",
+          "file": "UCF_01_YT_Thumb_1280x720.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "status": "PASS"
+        },
+        {
+          "vid": "UCF_02",
+          "file": "UCF_02_YT_Thumb_1280x720.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "status": "PASS"
+        },
+        {
+          "vid": "UCF_03",
+          "file": "UCF_03_YT_Thumb_1280x720.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "status": "PASS"
+        },
+        {
+          "vid": "UCF_04",
+          "file": "UCF_04_YT_Thumb_1280x720.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "status": "PASS"
+        },
+        {
+          "vid": "UCF_05",
+          "file": "UCF_05_YT_Thumb_1280x720.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "status": "PASS"
+        }
+      ],
+      "covers": [
+        {
+          "file": "MTV_01_Vertical_Cover_1080x1920.jpg",
+          "size": [
+            1080,
+            1920
+          ],
+          "status": "PASS"
+        },
+        {
+          "file": "MTV_02_Vertical_Cover_1080x1920.jpg",
+          "size": [
+            1080,
+            1920
+          ],
+          "status": "PASS"
+        },
+        {
+          "file": "MTV_03_Vertical_Cover_1080x1920.jpg",
+          "size": [
+            1080,
+            1920
+          ],
+          "status": "PASS"
+        },
+        {
+          "file": "MTV_04_Vertical_Cover_1080x1920.jpg",
+          "size": [
+            1080,
+            1920
+          ],
+          "status": "PASS"
+        },
+        {
+          "file": "MTV_05_Vertical_Cover_1080x1920.jpg",
+          "size": [
+            1080,
+            1920
+          ],
+          "status": "PASS"
+        },
+        {
+          "file": "UCF_01_Vertical_Cover_1080x1920.jpg",
+          "size": [
+            1080,
+            1920
+          ],
+          "status": "PASS"
+        },
+        {
+          "file": "UCF_02_Vertical_Cover_1080x1920.jpg",
+          "size": [
+            1080,
+            1920
+          ],
+          "status": "PASS"
+        },
+        {
+          "file": "UCF_03_Vertical_Cover_1080x1920.jpg",
+          "size": [
+            1080,
+            1920
+          ],
+          "status": "PASS"
+        },
+        {
+          "file": "UCF_04_Vertical_Cover_1080x1920.jpg",
+          "size": [
+            1080,
+            1920
+          ],
+          "status": "PASS"
+        },
+        {
+          "file": "UCF_05_Vertical_Cover_1080x1920.jpg",
+          "size": [
+            1080,
+            1920
+          ],
+          "status": "PASS"
+        }
+      ],
+      "badge_clearance": [
+        {
+          "vid": "MTV_01",
+          "hook": "UNAIRED 1989",
+          "hook_x2": 727,
+          "badge_start_x": 1180,
+          "clearance_pixels": 453,
+          "status": "PASS"
+        },
+        {
+          "vid": "MTV_02",
+          "hook": "2002 LOCKERS",
+          "hook_x2": 745,
+          "badge_start_x": 1180,
+          "clearance_pixels": 435,
+          "status": "PASS"
+        },
+        {
+          "vid": "MTV_03",
+          "hook": "OFF THE AIR",
+          "hook_x2": 596,
+          "badge_start_x": 1180,
+          "clearance_pixels": 584,
+          "status": "PASS"
+        },
+        {
+          "vid": "MTV_04",
+          "hook": "$160 RIOT",
+          "hook_x2": 543,
+          "badge_start_x": 1180,
+          "clearance_pixels": 637,
+          "status": "PASS"
+        },
+        {
+          "vid": "MTV_05",
+          "hook": "1988 TUNNEL",
+          "hook_x2": 666,
+          "badge_start_x": 1180,
+          "clearance_pixels": 514,
+          "status": "PASS"
+        },
+        {
+          "vid": "UCF_01",
+          "hook": "7 BODIES FOUND",
+          "hook_x2": 800,
+          "badge_start_x": 1180,
+          "clearance_pixels": 380,
+          "status": "PASS"
+        },
+        {
+          "vid": "UCF_02",
+          "hook": "41 HOSTAGES",
+          "hook_x2": 674,
+          "badge_start_x": 1180,
+          "clearance_pixels": 506,
+          "status": "PASS"
+        },
+        {
+          "vid": "UCF_03",
+          "hook": "JANE DOE TAPE",
+          "hook_x2": 723,
+          "badge_start_x": 1180,
+          "clearance_pixels": 457,
+          "status": "PASS"
+        },
+        {
+          "vid": "UCF_04",
+          "hook": "3 ARSON FIRES",
+          "hook_x2": 742,
+          "badge_start_x": 1180,
+          "clearance_pixels": 438,
+          "status": "PASS"
+        },
+        {
+          "vid": "UCF_05",
+          "hook": "DC-10 DROP",
+          "hook_x2": 615,
+          "badge_start_x": 1180,
+          "clearance_pixels": 565,
+          "status": "PASS"
+        }
+      ]
+    }
+  },
+  "suite_3_titling_hygiene": {
+    "passed": true,
+    "details": {
+      "manifest_titles": [
+        {
+          "id": "MTV_01",
+          "title": "1989 Michael Jordan Uncut Practice | B-Roll & Breds",
+          "length": 51,
+          "has_franchise_tag": true,
+          "front_loaded_32": "1989 Michael Jordan Uncut Practi",
+          "status": "PASS"
+        },
+        {
+          "id": "MTV_02",
+          "title": "2002 WCF Kobe & Shaq Locker Room | The Tunnel Tape",
+          "length": 50,
+          "has_franchise_tag": true,
+          "front_loaded_32": "2002 WCF Kobe & Shaq Locker Room",
+          "status": "PASS"
+        },
+        {
+          "id": "MTV_03",
+          "title": "1990s Terry Bradshaw Studio Blooper | The Raw Feed",
+          "length": 50,
+          "has_franchise_tag": true,
+          "front_loaded_32": "1990s Terry Bradshaw Studio Bloo",
+          "status": "PASS"
+        },
+        {
+          "id": "MTV_04",
+          "title": "2000 Air Jordan 11 Mall Stampede | B-Roll & Breds",
+          "length": 49,
+          "has_franchise_tag": true,
+          "front_loaded_32": "2000 Air Jordan 11 Mall Stampede",
+          "status": "PASS"
+        },
+        {
+          "id": "MTV_05",
+          "title": "1988 World Series Dodgers Dugout | The Tunnel Tape",
+          "length": 50,
+          "has_franchise_tag": true,
+          "front_loaded_32": "1988 World Series Dodgers Dugout",
+          "status": "PASS"
+        },
+        {
+          "id": "UCF_01",
+          "title": "Dorothea Puente 1426 F St Dig | Case Files",
+          "length": 42,
+          "has_franchise_tag": true,
+          "front_loaded_32": "Dorothea Puente 1426 F St Dig | ",
+          "status": "PASS"
+        },
+        {
+          "id": "UCF_02",
+          "title": "1991 Good Guys Hostage Siege SWAT | Case Files",
+          "length": 46,
+          "has_franchise_tag": true,
+          "front_loaded_32": "1991 Good Guys Hostage Siege SWA",
+          "status": "PASS"
+        },
+        {
+          "id": "UCF_03",
+          "title": "2002 Jane Doe Border Operation | Case Files",
+          "length": 43,
+          "has_franchise_tag": true,
+          "front_loaded_32": "2002 Jane Doe Border Operation |",
+          "status": "PASS"
+        },
+        {
+          "id": "UCF_04",
+          "title": "1999 Synagogue Arson Wave Standoff | Case Files",
+          "length": 47,
+          "has_franchise_tag": true,
+          "front_loaded_32": "1999 Synagogue Arson Wave Stando",
+          "status": "PASS"
+        },
+        {
+          "id": "UCF_05",
+          "title": "2018 Camp Fire Paradise Drone Flight | Case Files",
+          "length": 49,
+          "has_franchise_tag": true,
+          "front_loaded_32": "2018 Camp Fire Paradise Drone Fl",
+          "status": "PASS"
+        }
+      ],
+      "posting_pack_titles": [
+        {
+          "title": "1989 Michael Jordan Uncut Practice | B-Roll & Breds",
+          "length": 51,
+          "has_franchise_tag": true,
+          "status": "PASS"
+        },
+        {
+          "title": "2002 WCF Kobe & Shaq Locker Room | The Tunnel Tape",
+          "length": 50,
+          "has_franchise_tag": true,
+          "status": "PASS"
+        },
+        {
+          "title": "1990s Terry Bradshaw Studio Blooper | The Raw Feed",
+          "length": 50,
+          "has_franchise_tag": true,
+          "status": "PASS"
+        },
+        {
+          "title": "2000 Air Jordan 11 Mall Stampede | B-Roll & Breds",
+          "length": 49,
+          "has_franchise_tag": true,
+          "status": "PASS"
+        },
+        {
+          "title": "1988 World Series Dodgers Dugout | The Tunnel Tape",
+          "length": 50,
+          "has_franchise_tag": true,
+          "status": "PASS"
+        },
+        {
+          "title": "Dorothea Puente 1426 F St Dig | Case Files",
+          "length": 42,
+          "has_franchise_tag": true,
+          "status": "PASS"
+        },
+        {
+          "title": "1991 Good Guys Hostage Siege SWAT | Case Files",
+          "length": 46,
+          "has_franchise_tag": true,
+          "status": "PASS"
+        },
+        {
+          "title": "2002 Jane Doe Border Operation | Case Files",
+          "length": 43,
+          "has_franchise_tag": true,
+          "status": "PASS"
+        },
+        {
+          "title": "1999 Synagogue Arson Wave Standoff | Case Files",
+          "length": 47,
+          "has_franchise_tag": true,
+          "status": "PASS"
+        },
+        {
+          "title": "2018 Camp Fire Paradise Drone Flight | Case Files",
+          "length": 49,
+          "has_franchise_tag": true,
+          "status": "PASS"
+        }
+      ]
+    }
+  },
+  "suite_4_py_compile": {
+    "passed": true,
+    "details": [
+      {
+        "script": "audit_all_74_vault_reels.py",
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      {
+        "script": "build_distribution_pack.py",
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      {
+        "script": "build_launch_wave1_videos.py",
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      {
+        "script": "build_modern_2026_logos.py",
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      {
+        "script": "inspect_bloopers_and_fire.py",
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      {
+        "script": "rebuild_best_practice_thumbs_and_pages.py",
+        "exit_code": 0,
+        "status": "PASS"
+      }
+    ]
+  }
+}

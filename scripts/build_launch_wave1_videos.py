@@ -12,30 +12,33 @@ from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 import edge_tts
 
 GDRIVE_BIN = shutil.which("gdrive") or "gdrive"
+FFMPEG_BIN = shutil.which("ffmpeg") or r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"
+FFPROBE_BIN = shutil.which("ffprobe") or r"C:\ProgramData\chocolatey\bin\ffprobe.exe"
+REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 WORK_ROOT = pathlib.Path(r"C:\Users\adam\AppData\Local\Temp\fox40_launch_wave1_build")
 RAW_CACHE = WORK_ROOT / "raw_cache"
 INTER_DIR = WORK_ROOT / "intermediate"
 OUT_ROOT = WORK_ROOT / "ready_to_post"
-BRANDING_SRC_DIR = pathlib.Path(r"C:\Users\adam\.gemini\antigravity\brain\4d763763-2f56-420d-8763-3ca83f06e1ef")
-DOCS_DIR = pathlib.Path(r"C:\Users\adam\.gemini\antigravity\scratch\fox40_broadcast_archive\docs")
+BRANDING_SRC_DIR = REPO_ROOT / "assets" / "branding"
+DOCS_DIR = REPO_ROOT / "docs"
+THUMB_DT_DIR = REPO_ROOT / "assets" / "thumbnails" / "deadstock_tapes"
+THUMB_UCF_DIR = REPO_ROOT / "assets" / "thumbnails" / "unaired_case_files"
 
-DRIVE_READY_FOLDER = "1n0tFUP97IYcJkpYrFCSkQDTO-9YrHq00"  # 08_Ready_For_YouTube_and_TikTok
-
-for d in (RAW_CACHE, INTER_DIR, OUT_ROOT, DOCS_DIR):
+for d in (RAW_CACHE, INTER_DIR, OUT_ROOT, DOCS_DIR, THUMB_DT_DIR, THUMB_UCF_DIR):
     d.mkdir(parents=True, exist_ok=True)
 
 
 VIDEOS = [
-    # ==================== BRAND 1: MASTER TAPE VAULT (5 VIDEOS) ====================
+    # ==================== BRAND 1: DEADSTOCK TAPES (5 VIDEOS) ====================
     {
         "id": "MTV_01",
-        "brand": "Master Tape Vault",
+        "brand": "Deadstock Tapes",
         "voice": "en-US-GuyNeural",
-        "accent_hex": "F59E0B",       # Broadcast Gold
-        "accent_rgb": (245, 158, 11),
-        "accent_ass": "&H000B9EF5",   # BGR for ASS
-        "sub_hex": "38BDF8",          # CRT Signal Cyan
-        "badge_text": "MASTER TAPE VAULT  |  UNCUT NBA ARCHIVE",
+        "accent_hex": "E2B455",       # Mustard Gold
+        "accent_rgb": (226, 180, 85),
+        "accent_ass": "&H0055B4E2",   # BGR for ASS (&H00BBGGRR)
+        "sub_hex": "7AA89F",          # Vintage Mint-Teal
+        "badge_text": "DEADSTOCK TAPES  |  B-ROLL & BREDS",
         "header_title": "1989 MICHAEL JORDAN UNCUT",
         "header_sub": "FEB 1989  •  ARCO ARENA  •  UNCOMPRESSED 2VUY MASTER",
         "telestration": {"x": 360, "y": 540, "w": 360, "h": 480, "label": "MICHAEL JORDAN #23 (AGE 26)"},
@@ -44,6 +47,11 @@ VIDEOS = [
         "thumb_circle": (640, 340, 175),
         "thumb_seg_idx": 0,
         "thumb_offset_sec": 6.0,
+        "thumb_ts": 20.8,
+        "thumb_focus_y": 0.35,
+        "thumb_tc": "TC 02:14:89:23",
+        "thumb_hook": "UNAIRED 1989",
+        "thumb_hook_rgb": (255, 228, 0),
         "out_name": "MTV_01_1989_Michael_Jordan_Uncut_Practice_5994fps.mp4",
         "narration": (
             "Unseen 1989 master tape. Before Michael Jordan won a single NBA championship, "
@@ -51,7 +59,7 @@ VIDEOS = [
             "Watch a twenty-six-year-old Jordan effortlessly draining jumpers during shootaround "
             "and joking with teammate Craig Hodges, while Kings head coach Dick Motta tries to "
             "game-plan for a man about to drop fifty. Preserved directly from an uncompressed "
-            "studio master at sixty frames per second. Follow Master Tape Vault for more uncut sports history."
+            "studio master at sixty frames per second. Follow Deadstock Tapes for uncut sports history."
         ),
         "segments": [
             {
@@ -74,13 +82,13 @@ VIDEOS = [
     },
     {
         "id": "MTV_02",
-        "brand": "Master Tape Vault",
+        "brand": "Deadstock Tapes",
         "voice": "en-US-GuyNeural",
-        "accent_hex": "F59E0B",
-        "accent_rgb": (245, 158, 11),
-        "accent_ass": "&H000B9EF5",
-        "sub_hex": "38BDF8",
-        "badge_text": "MASTER TAPE VAULT  |  2002 NBA PLAYOFFS",
+        "accent_hex": "E2B455",
+        "accent_rgb": (226, 180, 85),
+        "accent_ass": "&H0055B4E2",
+        "sub_hex": "7AA89F",
+        "badge_text": "DEADSTOCK TAPES  |  THE TUNNEL TAPE",
         "header_title": "2002 KOBE & SHAQ vs. KINGS",
         "header_sub": "MAY 2002  •  WESTERN CONF. FINALS  •  BETACAM MASTER",
         "telestration": {"x": 380, "y": 490, "w": 420, "h": 520, "label": "KOBE BRYANT #8 (2002 WCF)"},
@@ -89,13 +97,19 @@ VIDEOS = [
         "thumb_circle": (700, 320, 175),
         "thumb_seg_idx": 0,
         "thumb_offset_sec": 7.5,
+        "thumb_ts": 5.0,
+        "thumb_focus_y": 0.25,
+        "thumb_tc": "TC 05:28:02:08",
+        "thumb_hook": "2002 LOCKERS",
+        "thumb_hook_rgb": (255, 228, 0),
         "out_name": "MTV_02_2002_Kobe_Bryant_Shaq_vs_Kings_WCF_5994fps.mp4",
         "narration": (
             "May 2002. Inside the locker room during the most controversial playoff series in NBA history. "
             "This raw FOX40 Betacam tape captures a twenty-three-year-old Kobe Bryant moments after "
             "battling the Sacramento Kings in the Western Conference Finals. On the floor, our courtside "
             "camera caught Shaquille O'Neal trading blows in the paint with Vlade Divac, followed by "
-            "raw locker room reactions from Mike Bibby and Chris Webber. Uncut and unseen for over twenty years."
+            "raw locker room reactions from Mike Bibby and Chris Webber. Uncut and unseen for over twenty years. "
+            "Follow Deadstock Tapes for uncut sports history."
         ),
         "segments": [
             {
@@ -123,13 +137,13 @@ VIDEOS = [
     },
     {
         "id": "MTV_03",
-        "brand": "Master Tape Vault",
+        "brand": "Deadstock Tapes",
         "voice": "en-US-GuyNeural",
-        "accent_hex": "F59E0B",
-        "accent_rgb": (245, 158, 11),
-        "accent_ass": "&H000B9EF5",
-        "sub_hex": "38BDF8",
-        "badge_text": "MASTER TAPE VAULT  |  90s NFL ARCHIVE",
+        "accent_hex": "E2B455",
+        "accent_rgb": (226, 180, 85),
+        "accent_ass": "&H0055B4E2",
+        "sub_hex": "7AA89F",
+        "badge_text": "DEADSTOCK TAPES  |  THE RAW FEED",
         "header_title": "90s FOX NFL SUNDAY UNCUT",
         "header_sub": "TERRY BRADSHAW  •  HOWIE LONG  •  RONNIE LOTT",
         "telestration": {"x": 300, "y": 500, "w": 460, "h": 520, "label": "TERRY BRADSHAW OFF-AIR"},
@@ -138,13 +152,19 @@ VIDEOS = [
         "thumb_circle": (640, 340, 180),
         "thumb_seg_idx": 0,
         "thumb_offset_sec": 12.0,
+        "thumb_ts": 34.0,
+        "thumb_focus_y": 0.28,
+        "thumb_tc": "TC 11:12:95:04",
+        "thumb_hook": "OFF THE AIR",
+        "thumb_hook_rgb": (255, 228, 0),
         "out_name": "MTV_03_1990s_FOX_NFL_Sunday_Bradshaw_Howie_Long_5994fps.mp4",
         "narration": (
             "Hidden inside an unlabeled 1990s news tape, we discovered an exclusive behind-the-scenes "
             "tour of the original FOX NFL Sunday studio in Hollywood. Watch Hall of Famer Terry Bradshaw "
             "cutting up between takes when the network cameras were turned off, alongside Howie Long, "
             "James Brown, and forty-niners legend Ronnie Lott at the iconic broadcast desk. "
-            "This raw local station tape hasn't been seen since the nineties."
+            "This raw local station tape hasn't been seen since the nineties. "
+            "Follow Deadstock Tapes for uncut sports history."
         ),
         "segments": [
             {
@@ -172,13 +192,13 @@ VIDEOS = [
     },
     {
         "id": "MTV_04",
-        "brand": "Master Tape Vault",
+        "brand": "Deadstock Tapes",
         "voice": "en-US-GuyNeural",
-        "accent_hex": "F59E0B",
-        "accent_rgb": (245, 158, 11),
-        "accent_ass": "&H000B9EF5",
-        "sub_hex": "38BDF8",
-        "badge_text": "MASTER TAPE VAULT  |  SNEAKER HISTORY",
+        "accent_hex": "E2B455",
+        "accent_rgb": (226, 180, 85),
+        "accent_ass": "&H0055B4E2",
+        "sub_hex": "7AA89F",
+        "badge_text": "DEADSTOCK TAPES  |  B-ROLL & BREDS",
         "header_title": "AIR JORDAN MALL RIOT (2000)",
         "header_sub": "FOOT LOCKER STAMPEDE  •  JORDAN XI & XVI RELEASE",
         "telestration": {"x": 220, "y": 520, "w": 640, "h": 500, "label": "FOOT LOCKER CROWD SURGE"},
@@ -187,13 +207,19 @@ VIDEOS = [
         "thumb_circle": (600, 380, 180),
         "thumb_seg_idx": 0,
         "thumb_offset_sec": 5.0,
+        "thumb_ts": 23.0,
+        "thumb_focus_y": 0.45,
+        "thumb_tc": "TC 12:23:00:11",
+        "thumb_hook": "$160 RIOT",
+        "thumb_hook_rgb": (255, 228, 0),
         "out_name": "MTV_04_2000_Air_Jordan_XI_XVI_Foot_Locker_Mall_Riot_5994fps.mp4",
         "narration": (
             "Before sneaker apps and online raffles, buying a pair of Air Jordans meant surviving "
             "a literal mall riot. This raw year-2000 and 2001 broadcast tape shows hundreds of shoppers "
             "surging against the security gates at Foot Locker while Sacramento Sheriff's deputies "
             "scramble to hold the line. All to get their hands on the retro patent-leather Air Jordan "
-            "Eleven and the brand-new Jordan Sixteen for a hundred and sixty bucks."
+            "Eleven and the brand-new Jordan Sixteen for a hundred and sixty bucks. "
+            "Follow Deadstock Tapes for uncut sports history."
         ),
         "segments": [
             {
@@ -221,13 +247,13 @@ VIDEOS = [
     },
     {
         "id": "MTV_05",
-        "brand": "Master Tape Vault",
+        "brand": "Deadstock Tapes",
         "voice": "en-US-GuyNeural",
-        "accent_hex": "F59E0B",
-        "accent_rgb": (245, 158, 11),
-        "accent_ass": "&H000B9EF5",
-        "sub_hex": "38BDF8",
-        "badge_text": "MASTER TAPE VAULT  |  1980s MLB & NFL VAULT",
+        "accent_hex": "E2B455",
+        "accent_rgb": (226, 180, 85),
+        "accent_ass": "&H0055B4E2",
+        "sub_hex": "7AA89F",
+        "badge_text": "DEADSTOCK TAPES  |  THE TUNNEL TAPE",
         "header_title": "1988 WORLD SERIES & 80s NFL",
         "header_sub": "DODGER STADIUM FIELD TAPE  •  MARK GASTINEAU #99",
         "telestration": {"x": 300, "y": 520, "w": 480, "h": 520, "label": "1988 OAKLAND A's AT DODGER STADIUM"},
@@ -236,13 +262,19 @@ VIDEOS = [
         "thumb_circle": (620, 360, 175),
         "thumb_seg_idx": 0,
         "thumb_offset_sec": 14.0,
+        "thumb_ts": 11.0,
+        "thumb_focus_y": 0.38,
+        "thumb_tc": "TC 10:15:88:01",
+        "thumb_hook": "1988 TUNNEL",
+        "thumb_hook_rgb": (255, 228, 0),
         "out_name": "MTV_05_1988_World_Series_As_Dodgers_and_80s_NFL_Gastineau_5994fps.mp4",
         "narration": (
             "Two legendary 1980s sports moments preserved on a single broadcast master reel. "
             "First, step onto the grass at Dodger Stadium during the 1988 World Series between "
             "the Oakland A's and Los Angeles Dodgers, with field-level cameras right outside the "
             "dugout tunnel. And on the exact same tape, raw eighties NFL action featuring New York Jets "
-            "pass rusher Mark Gastineau celebrating a sack against Kansas City with his famous sack dance."
+            "pass rusher Mark Gastineau celebrating a sack against Kansas City with his famous sack dance. "
+            "Follow Deadstock Tapes for uncut sports history."
         ),
         "segments": [
             {
@@ -262,6 +294,7 @@ VIDEOS = [
         ],
     },
 
+
     # ==================== BRAND 2: UNAIRED CASE FILES (5 VIDEOS) ====================
     {
         "id": "UCF_01",
@@ -271,7 +304,7 @@ VIDEOS = [
         "accent_rgb": (239, 68, 68),
         "accent_ass": "&H004444EF",   # BGR for ASS
         "sub_hex": "EAB308",          # Crime-Scene Amber
-        "badge_text": "UNAIRED CASE FILES  |  EVIDENCE REEL #01",
+        "badge_text": "UNAIRED CASE FILES  |  CASE FILES",
         "header_title": "DOROTHEA PUENTE MURDER TRIAL",
         "header_sub": "NOV 1988  •  1426 F STREET EXCAVATION & 3D MODEL",
         "telestration": {"x": 240, "y": 560, "w": 620, "h": 440, "label": "EVIDENCE: 1426 F ST BODY BAG RECOVERY"},
@@ -280,6 +313,11 @@ VIDEOS = [
         "thumb_circle": (640, 380, 190),
         "thumb_seg_idx": 0,
         "thumb_offset_sec": 6.5,
+        "thumb_ts": 8.0,
+        "thumb_focus_y": 0.45,
+        "thumb_tc": "TC 11:11:88:07",
+        "thumb_hook": "7 BODIES FOUND",
+        "thumb_hook_rgb": (255, 220, 0),
         "out_name": "UCF_01_1988_Dorothea_Puente_Trial_3D_Model_Body_Bags_5994fps.mp4",
         "narration": (
             "November 1988, Sacramento, California. Behind the white picket fence of 1426 F Street, "
@@ -327,7 +365,7 @@ VIDEOS = [
         "accent_rgb": (239, 68, 68),
         "accent_ass": "&H004444EF",
         "sub_hex": "EAB308",
-        "badge_text": "UNAIRED CASE FILES  |  EVIDENCE REEL #02",
+        "badge_text": "UNAIRED CASE FILES  |  CASE FILES",
         "header_title": "1991 'GOOD GUYS!' SWAT RAID",
         "header_sub": "APRIL 4, 1991  •  41 HOSTAGES  •  SACRAMENTO, CA",
         "telestration": {"x": 260, "y": 520, "w": 560, "h": 480, "label": "HOSTAGES INSIDE GLASS DOORS"},
@@ -336,6 +374,11 @@ VIDEOS = [
         "thumb_circle": (640, 360, 185),
         "thumb_seg_idx": 1,
         "thumb_offset_sec": 8.0,
+        "thumb_ts": 38.0,
+        "thumb_focus_y": 0.45,
+        "thumb_tc": "TC 04:04:91:21",
+        "thumb_hook": "41 HOSTAGES",
+        "thumb_hook_rgb": (255, 220, 0),
         "out_name": "UCF_02_1991_Sacramento_Good_Guys_Hostage_SWAT_Raid_5994fps.mp4",
         "narration": (
             "April fourth, 1991. Four heavily armed gunmen walk into a Good Guys electronics store in "
@@ -376,7 +419,7 @@ VIDEOS = [
         "accent_rgb": (239, 68, 68),
         "accent_ass": "&H004444EF",
         "sub_hex": "EAB308",
-        "badge_text": "UNAIRED CASE FILES  |  EVIDENCE REEL #03",
+        "badge_text": "UNAIRED CASE FILES  |  CASE FILES",
         "header_title": "2002 JANE DOE CLAY RECONSTRUCTION",
         "header_sub": "JAN 2002  •  UNSOLVED HOMICIDE  •  2VUY MASTER",
         "telestration": {"x": 280, "y": 510, "w": 500, "h": 480, "label": "CRIME SCENE DUMPSTER RECOVERY"},
@@ -385,6 +428,11 @@ VIDEOS = [
         "thumb_circle": (740, 360, 175),
         "thumb_seg_idx": 2,
         "thumb_offset_sec": 6.0,
+        "thumb_ts": 12.0,
+        "thumb_focus_y": 0.42,
+        "thumb_tc": "TC 01:19:02:14",
+        "thumb_hook": "JANE DOE TAPE",
+        "thumb_hook_rgb": (255, 220, 0),
         "out_name": "UCF_03_2002_Jane_Doe_Dumpster_Forensic_Clay_Bust_5994fps.mp4",
         "narration": (
             "January 2002. When a woman's body was discovered inside a commercial dumpster with no "
@@ -426,7 +474,7 @@ VIDEOS = [
         "accent_rgb": (239, 68, 68),
         "accent_ass": "&H004444EF",
         "sub_hex": "EAB308",
-        "badge_text": "UNAIRED CASE FILES  |  EVIDENCE REEL #04",
+        "badge_text": "UNAIRED CASE FILES  |  CASE FILES",
         "header_title": "1999 SYNAGOGUE ARSON TERROR CASE",
         "header_sub": "JUNE 18, 1999  •  DOMESTIC TERROR INVESTIGATION",
         "telestration": {"x": 240, "y": 500, "w": 600, "h": 500, "label": "ACTIVE ARSON SCENE (JUNE 18, 1999)"},
@@ -435,6 +483,11 @@ VIDEOS = [
         "thumb_circle": (640, 350, 185),
         "thumb_seg_idx": 1,
         "thumb_offset_sec": 5.0,
+        "thumb_ts": 24.0,
+        "thumb_focus_y": 0.42,
+        "thumb_tc": "TC 06:18:99:03",
+        "thumb_hook": "3 ARSON FIRES",
+        "thumb_hook_rgb": (255, 220, 0),
         "out_name": "UCF_04_1999_Sacramento_Synagogue_Arson_Terror_Case_5994fps.mp4",
         "narration": (
             "Before dawn on June eighteenth, 1999, three Jewish synagogues across Sacramento were "
@@ -483,7 +536,7 @@ VIDEOS = [
         "accent_rgb": (239, 68, 68),
         "accent_ass": "&H004444EF",
         "sub_hex": "EAB308",
-        "badge_text": "UNAIRED CASE FILES  |  MEGAFIRE ARCHIVE #05",
+        "badge_text": "UNAIRED CASE FILES  |  CASE FILES",
         "header_title": "CALIFORNIA MEGAFIRE VAULT",
         "header_sub": "CARR FIRESTORM  •  DC-10 DROP  •  2.7K PARADISE DRONE",
         "telestration": {"x": 200, "y": 480, "w": 680, "h": 540, "label": "100-FOOT CROWN FIRESTORM WALL"},
@@ -492,6 +545,11 @@ VIDEOS = [
         "thumb_circle": (640, 350, 185),
         "thumb_seg_idx": 2,
         "thumb_offset_sec": 5.5,
+        "thumb_ts": 28.5,
+        "thumb_focus_y": 0.48,
+        "thumb_tc": "TC 07:28:18:10",
+        "thumb_hook": "DC-10 DROP",
+        "thumb_hook_rgb": (255, 220, 0),
         "out_name": "UCF_05_California_Megafire_Carr_Inferno_DC10_Drop_Paradise_Drone_5994fps.mp4",
         "narration": (
             "Raw broadcast and aerial master reels from Northern California's deadliest megafires. "
@@ -555,7 +613,7 @@ def download_raw(drive_id, raw_name):
     return dest
 
 
-def extract_normalized_segment(raw_path, seg_spec, out_seg_path):
+def extract_normalized_segment(raw_path, seg_spec, out_seg_path, audio_bed_path=None):
     """
     Normalizes any archival source (4:3 SD interlaced, 16:9 HD, or 2.7K silent drone)
     into a uniform 1080x810 @ 59.94 fps progressive (bwdif) MP4 with 48kHz stereo audio.
@@ -569,13 +627,20 @@ def extract_normalized_segment(raw_path, seg_spec, out_seg_path):
         vf = f"{crop_pre},scale=1080:810:flags=lanczos,setsar=1,fps=60000/1001,format=yuv420p"
     else:
         vf = (
-            "bwdif=mode=send_field:parity=auto:deint=all,"
+            "bwdif=mode=1:parity=-1:deint=0,"
             "scale=1080:810:force_original_aspect_ratio=increase:flags=lanczos,"
             "crop=1080:810,setsar=1,fps=60000/1001,format=yuv420p"
         )
 
-    cmd = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-ss", str(ss), "-t", str(t), "-i", str(raw_path)]
-    if silent:
+    cmd = [FFMPEG_BIN, "-y", "-hide_banner", "-loglevel", "error", "-ss", str(ss), "-t", str(t), "-i", str(raw_path)]
+    if silent and audio_bed_path and pathlib.Path(audio_bed_path).exists():
+        cmd.extend(["-t", str(t), "-i", str(audio_bed_path)])
+        cmd.extend([
+            "-vf", vf,
+            "-af", "aresample=48000,pan=stereo|c0=c0|c1=c0",
+            "-map", "0:v:0", "-map", "1:a:0",
+        ])
+    elif silent:
         cmd.extend(["-f", "lavfi", "-t", str(t), "-i", "anoisesrc=d=" + str(t) + ":c=brown:r=48000:a=0.015"])
         cmd.extend([
             "-vf", vf,
@@ -724,7 +789,7 @@ def render_final_short(vid_spec, concat_mp4, vo_mp3, ass_path, out_mp4):
     )
 
     cmd = [
-        "ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+        FFMPEG_BIN, "-y", "-hide_banner", "-loglevel", "error",
         "-i", str(concat_mp4),
         "-i", str(vo_mp3),
         "-filter_complex", vf + ";" + af,
@@ -738,80 +803,222 @@ def render_final_short(vid_spec, concat_mp4, vo_mp3, ass_path, out_mp4):
     run_cmd(cmd, f"Rendering final narrated 59.94fps Short {out_mp4.name}")
 
 
-def generate_thumbnails(vid_spec, seg_mp4_path, final_short_path, yt_thumb_path, vert_cover_path):
-    # 1. Extract frame from segment for 1280x720 YouTube Thumbnail
-    raw_frame_jpg = INTER_DIR / f"{vid_spec['id']}_raw_frame.jpg"
-    ts = vid_spec["thumb_offset_sec"]
-    cmd1 = [
-        "ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
-        "-ss", str(ts), "-i", str(seg_mp4_path),
-        "-vf", "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720",
+def get_font(name, size):
+    paths = {
+        "impact": r"C:\Windows\Fonts\impact.ttf",
+        "black": r"C:\Windows\Fonts\ariblk.ttf",
+        "bold": r"C:\Windows\Fonts\arialbd.ttf",
+        "regular": r"C:\Windows\Fonts\arial.ttf",
+        "mono": r"C:\Windows\Fonts\consolab.ttf",
+        "lucida": r"C:\Windows\Fonts\lucon.ttf",
+    }
+    p = paths.get(name, paths["bold"])
+    if not pathlib.Path(p).exists():
+        p = paths["bold"]
+    return ImageFont.truetype(p, size)
+
+
+def extract_natural_full_frame_16x9(mp4_path, ts_sec, focus_y=0.38):
+    """
+    Extracts a single 100% authentic, native-gamma 4:3 broadcast still (1080x810)
+    from our 59.94fps master MP4 at ts_sec, and crops cleanly to 16:9 (1280x720)
+    with ZERO artificial contrast/saturation/skin-smoothing filters (Contrast=1.0).
+    """
+    tmp_jpg = INTER_DIR / f"_tmp_nat_{mp4_path.stem}_{ts_sec:.1f}.jpg"
+    cmd = [
+        FFMPEG_BIN, "-y", "-hide_banner", "-loglevel", "error",
+        "-ss", f"{ts_sec:.2f}", "-i", str(mp4_path),
+        "-vf", "crop=1080:810:0:420",
         "-frames:v", "1", "-q:v", "2",
-        str(raw_frame_jpg),
+        str(tmp_jpg),
     ]
-    run_cmd(cmd1, f"Extracting YouTube thumbnail frame for {vid_spec['id']}")
+    subprocess.run(cmd, check=True)
+    im = Image.open(tmp_jpg).convert("RGB")
+    tmp_jpg.unlink(missing_ok=True)
 
-    with Image.open(raw_frame_jpg).convert("RGB") as im:
-        im = ImageEnhance.Contrast(im).enhance(1.22)
-        im = ImageEnhance.Color(im).enhance(1.18)
-        im = ImageEnhance.Sharpness(im).enhance(1.35)
+    # Crop 1080x810 (4:3) -> 1080x608 (16:9) using vertical focus_y, then scale to 1280x720
+    src_w, src_h = im.size
+    target_h = 608
+    y0 = int((src_h - target_h) * focus_y)
+    y0 = max(0, min(src_h - target_h, y0))
+    cropped = im.crop((0, y0, src_w, y0 + target_h))
+    return cropped.resize((1280, 720), Image.Resampling.LANCZOS)
 
-        overlay = Image.new("RGBA", (1280, 720), (0, 0, 0, 0))
-        odraw = ImageDraw.Draw(overlay)
 
-        # Dark bottom gradient & top-left badge backing
-        for y in range(420, 720):
-            alpha = int(235 * ((y - 420) / 300.0))
-            odraw.line([(0, y), (1280, y)], fill=(8, 10, 14, alpha))
-        for y in range(0, 140):
-            alpha = int(170 * (1.0 - (y / 140.0)))
-            odraw.line([(0, y), (1280, y)], fill=(8, 10, 14, alpha))
+def apply_vcr_osd_and_corner_hook(canvas, tc_str, hook_text, hook_rgb=(255, 228, 0), sub_mode="PLAY"):
+    """
+    Applies the authentic 90s Betacam SP / VCR On-Screen Display (OSD) graphics:
+    - Top-left: 'PLAY ▶' + 'TC ...' in Lucida Console 44pt with hard black OSD shadow.
+    - Bottom-left: 2-3 word max condensed block hook in broadcast yellow with hard black stroke & drop shadow.
+    - Zero split-screen lines, zero modern pill badges, unobstructed subject & bottom-right corner clear.
+    """
+    W, H = canvas.size
+    overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    odraw = ImageDraw.Draw(overlay)
 
-        # Highlight circle
-        cx, cy, r = vid_spec["thumb_circle"]
-        acc_rgb = vid_spec["accent_rgb"]
-        for dr in range(-6, 7):
-            odraw.ellipse([cx - r + dr, cy - r + dr, cx + r + dr, cy + r + dr], outline=acc_rgb + (245,))
+    # Smooth 2D corner cushion (zero hard vertical or horizontal edges)
+    for y in range(220):
+        ty = 1.0 - (y / 220.0)
+        for x in range(560):
+            tx = 1.0 - (x / 560.0)
+            a = int(115 * ((tx * ty) ** 1.4))
+            if a > 0:
+                odraw.point((x, y), fill=(0, 0, 0, a))
 
-        # Top brand badge pill
-        odraw.rectangle([42, 34, 620, 92], fill=(10, 12, 16, 230), outline=acc_rgb + (255,), width=4)
+    # Full-width smooth bottom gradient (bottom 210px)
+    for y in range(510, H):
+        ty = (y - 510) / (H - 510)
+        alpha = int(150 * (ty ** 1.5))
+        odraw.line([(0, y), (W, y)], fill=(4, 6, 8, alpha))
 
-        im_rgba = Image.alpha_composite(im.convert("RGBA"), overlay).convert("RGB")
-        draw = ImageDraw.Draw(im_rgba)
+    base = Image.alpha_composite(canvas.convert("RGBA"), overlay)
+    draw = ImageDraw.Draw(base)
 
-        font_badge = ImageFont.truetype(r"C:\Windows\Fonts\arialbd.ttf", 28)
-        font_top = ImageFont.truetype(r"C:\Windows\Fonts\arialbd.ttf", 44)
-        font_main = ImageFont.truetype(r"C:\Windows\Fonts\ariblk.ttf", 78)
+    # 1. Top-Left VCR / Betacam OSD ('PLAY ▶' + 'TC ...')
+    f_osd = get_font("lucida", 44)
+    osd_x, osd_y = 52, 42
 
-        draw.text((62, 48), vid_spec["badge_text"].split("|")[0].strip() + " • 60FPS VAULT", fill=acc_rgb, font=font_badge)
+    for dx, dy in [(4, 4), (3, 3), (-2, -2), (2, -2), (-2, 2)]:
+        draw.text((osd_x + dx, osd_y + dy), sub_mode, fill=(0, 0, 0, 240), font=f_osd)
+    draw.text((osd_x, osd_y), sub_mode, fill=(246, 246, 246, 255), font=f_osd)
 
-        # Hook text with thick black stroke
-        draw.text((48, 515), vid_spec["thumb_hook_top"], fill=acc_rgb, font=font_top, stroke_width=5, stroke_fill=(0, 0, 0))
-        draw.text((48, 572), vid_spec["thumb_hook_main"], fill=(255, 255, 255), font=font_main, stroke_width=7, stroke_fill=(0, 0, 0))
+    # Geometric VCR Play Triangle ▶
+    bbox_play = draw.textbbox((osd_x, osd_y), sub_mode, font=f_osd)
+    tri_x = bbox_play[2] + 22
+    tri_y = osd_y + 6
+    tri_pts_shadow = [(tri_x + 4, tri_y + 4), (tri_x + 4, tri_y + 36), (tri_x + 32, tri_y + 20)]
+    tri_pts = [(tri_x, tri_y), (tri_x, tri_y + 32), (tri_x + 28, tri_y + 16)]
+    draw.polygon(tri_pts_shadow, fill=(0, 0, 0, 240))
+    draw.polygon(tri_pts, fill=(246, 246, 246, 255))
 
-        im_rgba.save(yt_thumb_path, quality=94)
+    # Line 2: SMPTE timecode
+    tc_y = osd_y + 56
+    for dx, dy in [(4, 4), (3, 3), (-2, -2), (2, -2), (-2, 2)]:
+        draw.text((osd_x + dx, tc_y + dy), tc_str, fill=(0, 0, 0, 240), font=f_osd)
+    draw.text((osd_x, tc_y), tc_str, fill=(246, 246, 246, 255), font=f_osd)
 
-    # 2. Extract vertical cover frame directly from the rendered Short at t=2.0s (with telestration + header + caption!)
+    # 2. Bottom-Left 2-3 Word Condensed Block Hook
+    f_hook = get_font("impact", 118)
+    hx, hy = 52, 558
+
+    # Hard retro block drop shadow (+9px, +9px)
+    draw.text(
+        (hx + 9, hy + 9),
+        hook_text,
+        fill=(0, 0, 0, 255),
+        font=f_hook,
+        stroke_width=8,
+        stroke_fill=(0, 0, 0, 255),
+    )
+    # Main condensed yellow block text with crisp black outline
+    draw.text(
+        (hx, hy),
+        hook_text,
+        fill=hook_rgb + (255,),
+        font=f_hook,
+        stroke_width=6,
+        stroke_fill=(0, 0, 0, 255),
+    )
+
+    return base.convert("RGB")
+
+
+def generate_thumbnails(vid_spec, final_short_path, yt_thumb_path, vert_cover_path):
+    ts = vid_spec.get("thumb_ts", vid_spec.get("thumb_offset_sec", 5.0))
+    fy = vid_spec.get("thumb_focus_y", 0.38)
+    tc = vid_spec.get("thumb_tc", "TC 00:00:00:00")
+    hook = vid_spec.get("thumb_hook", vid_spec.get("thumb_hook_main", "UNAIRED"))
+    hook_rgb = vid_spec.get("thumb_hook_rgb", (255, 228, 0) if vid_spec["brand"] == "Deadstock Tapes" else (255, 220, 0))
+
+    # 1. Generate 1280x720 YouTube Thumbnail (100% natural gamma broadcast still)
+    frame = extract_natural_full_frame_16x9(final_short_path, ts, focus_y=fy)
+    thumb = apply_vcr_osd_and_corner_hook(frame, tc, hook, hook_rgb=hook_rgb)
+    thumb.save(yt_thumb_path, quality=95)
+
+    # Sync to repository assets/thumbnails directory
+    repo_thumb_dir = THUMB_DT_DIR if vid_spec["brand"] == "Deadstock Tapes" else THUMB_UCF_DIR
+    shutil.copy2(yt_thumb_path, repo_thumb_dir / yt_thumb_path.name)
+
+    # 2. Extract 1080x1920 Vertical Cover directly from rendered Short at t=2.0s
     cmd2 = [
-        "ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+        FFMPEG_BIN, "-y", "-hide_banner", "-loglevel", "error",
         "-ss", "2.0", "-i", str(final_short_path),
         "-frames:v", "1", "-q:v", "2",
         str(vert_cover_path),
     ]
     run_cmd(cmd2, f"Extracting 1080x1920 Vertical Cover for {vid_spec['id']}")
+    shutil.copy2(vert_cover_path, repo_thumb_dir / vert_cover_path.name)
+
+
+def load_manifest_titles():
+    manifest_p = REPO_ROOT / "catalog" / "launch_wave1_manifest.json"
+    titles = {}
+    if manifest_p.exists():
+        try:
+            data = json.loads(manifest_p.read_text(encoding="utf-8"))
+            for item in data:
+                titles[item["id"]] = item.get("title", "")
+        except Exception:
+            pass
+    return titles
 
 
 def main():
-    t_start = time.time()
-    manifest = []
+    import argparse
+    parser = argparse.ArgumentParser(description="FOX40 Broadcast Archive - Wave 1 Video & Thumbnail Pipeline")
+    parser.add_argument("--force", action="store_true", help="Force re-rendering even if output exists")
+    parser.add_argument("--thumbs-only", action="store_true", help="Regenerate only thumbnails and vertical covers")
+    parser.add_argument("--video", type=str, default=None, help="Process single video ID or comma-separated list (e.g. MTV_01 or MTV_01,MTV_02)")
+    parser.add_argument("--channel", type=str, default=None, help="Filter by channel: 1, 2, 'deadstock', or 'casefiles'")
+    args = parser.parse_args()
 
-    for idx, vid in enumerate(VIDEOS, 1):
+    t_start = time.time()
+    canonical_titles = load_manifest_titles()
+
+    video_filter = None
+    if args.video:
+        video_filter = {x.strip().upper() for x in args.video.split(",") if x.strip()}
+
+    def matches_target(v):
+        if video_filter and v["id"].upper() not in video_filter:
+            return False
+        if args.channel:
+            c = str(args.channel).lower()
+            if c in ("1", "deadstock", "deadstock_tapes"):
+                if v["brand"] not in ("Deadstock Tapes", "Master Tape Vault"):
+                    return False
+            elif c in ("2", "casefiles", "unaired_case_files"):
+                if v["brand"] != "Unaired Case Files":
+                    return False
+        return True
+
+    target_videos = [v for v in VIDEOS if matches_target(v)]
+
+    # Load existing manifest so partial runs preserve entries for all 10 videos
+    manifest_dict = {}
+    manifest_p = OUT_ROOT / "launch_wave1_manifest.json"
+    if manifest_p.exists():
+        try:
+            for item in json.loads(manifest_p.read_text(encoding="utf-8")):
+                manifest_dict[item["id"]] = item
+        except Exception:
+            pass
+    repo_manifest_p = REPO_ROOT / "catalog" / "launch_wave1_manifest.json"
+    if repo_manifest_p.exists():
+        try:
+            for item in json.loads(repo_manifest_p.read_text(encoding="utf-8")):
+                if item["id"] not in manifest_dict:
+                    manifest_dict[item["id"]] = item
+        except Exception:
+            pass
+
+    for idx, vid in enumerate(target_videos, 1):
         vid_id = vid["id"]
         print(f"\n==================================================================", flush=True)
-        print(f"[{idx}/{len(VIDEOS)}] BUILDING {vid_id}: {vid['out_name']}", flush=True)
+        print(f"[{idx}/{len(target_videos)}] PROCESSING {vid_id}: {vid['out_name']}", flush=True)
         print(f"==================================================================", flush=True)
 
-        brand_folder = "01_Master_Tape_Vault_Launch" if vid["brand"] == "Master Tape Vault" else "02_Unaired_Case_Files_Launch"
+        brand_folder = "01_Master_Tape_Vault_Launch" if vid["brand"] in ("Deadstock Tapes", "Master Tape Vault") else "02_Unaired_Case_Files_Launch"
         dest_dir = OUT_ROOT / brand_folder
         dest_dir.mkdir(parents=True, exist_ok=True)
 
@@ -819,10 +1026,23 @@ def main():
         yt_thumb = dest_dir / f"{vid_id}_YT_Thumb_1280x720.jpg"
         vert_cover = dest_dir / f"{vid_id}_Vertical_Cover_1080x1920.jpg"
 
-        if out_mp4.exists() and out_mp4.stat().st_size > 1_000_000 and yt_thumb.exists():
-            print(f"  [+] {out_mp4.name} already built ({out_mp4.stat().st_size / 1e6:.1f} MB), skipping render.", flush=True)
-            manifest.append({"id": vid_id, "mp4": str(out_mp4), "yt_thumb": str(yt_thumb), "vert_cover": str(vert_cover)})
+        title = canonical_titles.get(vid_id, f"{vid['header_title']} | {vid['badge_text'].split('|')[-1].strip()}")
+
+        if args.thumbs_only:
+            if out_mp4.exists():
+                generate_thumbnails(vid, out_mp4, yt_thumb, vert_cover)
+                print(f"  [+] Regenerated v3 thumbnails for {vid_id}", flush=True)
+            manifest_dict[vid_id] = {"id": vid_id, "title": title, "mp4": str(out_mp4), "yt_thumb": str(yt_thumb), "vert_cover": str(vert_cover)}
             continue
+
+        if not args.force and out_mp4.exists() and out_mp4.stat().st_size > 1_000_000 and yt_thumb.exists():
+            print(f"  [+] {out_mp4.name} already built ({out_mp4.stat().st_size / 1e6:.1f} MB), skipping render.", flush=True)
+            manifest_dict[vid_id] = {"id": vid_id, "title": title, "mp4": str(out_mp4), "yt_thumb": str(yt_thumb), "vert_cover": str(vert_cover)}
+            continue
+
+        if args.force:
+            for p in (INTER_DIR / f"{vid_id}_vo.mp3", INTER_DIR / f"{vid_id}_vo.srt", INTER_DIR / f"{vid_id}_captions.ass", INTER_DIR / f"{vid_id}_concat_raw.mp4", INTER_DIR / f"{vid_id}_concat.txt"):
+                p.unlink(missing_ok=True)
 
         # 1. Extract normalized segments
         seg_files = []
@@ -830,7 +1050,8 @@ def main():
             seg_out = INTER_DIR / f"{vid_id}_seg_{s_i:02d}.mp4"
             if not (seg_out.exists() and seg_out.stat().st_size > 100_000):
                 raw_path = download_raw(seg["drive_id"], seg["raw_name"])
-                extract_normalized_segment(raw_path, seg, seg_out)
+                audio_bed = seg_files[0] if (seg.get("silent_source") and seg_files) else None
+                extract_normalized_segment(raw_path, seg, seg_out, audio_bed_path=audio_bed)
                 if not seg.get("keep_raw", False):
                     try:
                         raw_path.unlink(missing_ok=True)
@@ -838,20 +1059,6 @@ def main():
                     except Exception:
                         pass
             seg_files.append(seg_out)
-
-        # If UCF_05 has silent DJI drone segment (seg 3), copy audio from seg 0 (Carr Fire) into seg 3 so fire roar continues!
-        if vid_id == "UCF_05" and len(seg_files) >= 4:
-            seg3_with_fire_audio = INTER_DIR / f"{vid_id}_seg_03_fireaudio.mp4"
-            if not seg3_with_fire_audio.exists():
-                cmd_fa = [
-                    "ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
-                    "-i", str(seg_files[3]), "-i", str(seg_files[0]),
-                    "-map", "0:v:0", "-map", "1:a:0",
-                    "-c:v", "copy", "-c:a", "aac", "-b:a", "256k", "-shortest",
-                    str(seg3_with_fire_audio),
-                ]
-                run_cmd(cmd_fa, "Laying Carr Fire ambient audio bed underneath DJI_0013 Paradise drone clip")
-            seg_files[3] = seg3_with_fire_audio
 
         # 2. Concatenate normalized segments
         concat_list_txt = INTER_DIR / f"{vid_id}_concat.txt"
@@ -861,7 +1068,7 @@ def main():
         )
         concat_mp4 = INTER_DIR / f"{vid_id}_concat_raw.mp4"
         cmd_concat = [
-            "ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+            FFMPEG_BIN, "-y", "-hide_banner", "-loglevel", "error",
             "-f", "concat", "-safe", "0", "-i", str(concat_list_txt),
             "-c", "copy", str(concat_mp4)
         ]
@@ -877,15 +1084,18 @@ def main():
         render_final_short(vid, concat_mp4, vo_mp3, vo_ass, out_mp4)
 
         # 5. Generate YouTube 1280x720 Thumbnail & 1080x1920 Vertical Cover
-        thumb_seg_file = seg_files[min(vid["thumb_seg_idx"], len(seg_files) - 1)]
-        generate_thumbnails(vid, thumb_seg_file, out_mp4, yt_thumb, vert_cover)
+        generate_thumbnails(vid, out_mp4, yt_thumb, vert_cover)
 
         print(f"  [SUCCESS] {out_mp4.name} ({out_mp4.stat().st_size / 1e6:.2f} MB) + Thumbnails ready!", flush=True)
-        manifest.append({"id": vid_id, "mp4": str(out_mp4), "yt_thumb": str(yt_thumb), "vert_cover": str(vert_cover)})
+        manifest_dict[vid_id] = {"id": vid_id, "title": title, "mp4": str(out_mp4), "yt_thumb": str(yt_thumb), "vert_cover": str(vert_cover)}
 
-    (OUT_ROOT / "launch_wave1_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-    print(f"\nAll {len(manifest)} Launch Wave 1 videos & thumbnails built in {(time.time() - t_start)/60:.1f} minutes!", flush=True)
+    final_manifest = [manifest_dict[v["id"]] for v in VIDEOS if v["id"] in manifest_dict]
+    manifest_json = json.dumps(final_manifest, indent=2) + "\n"
+    (OUT_ROOT / "launch_wave1_manifest.json").write_text(manifest_json, encoding="utf-8")
+    (REPO_ROOT / "catalog" / "launch_wave1_manifest.json").write_text(manifest_json, encoding="utf-8")
+    print(f"\nAll {len(final_manifest)} Launch Wave 1 videos & thumbnails tracked in manifest (built in {(time.time() - t_start)/60:.1f} minutes)!", flush=True)
 
 
 if __name__ == "__main__":
     main()
+

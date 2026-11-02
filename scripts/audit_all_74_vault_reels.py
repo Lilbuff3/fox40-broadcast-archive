@@ -11,7 +11,8 @@ import time
 from PIL import Image, ImageDraw
 
 GDRIVE_BIN = shutil.which("gdrive") or "gdrive"
-CATALOG_PATH = pathlib.Path(r"C:\Users\adam\.gemini\antigravity\scratch\fox40_broadcast_archive\catalog\master_catalog.json")
+REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
+CATALOG_PATH = REPO_ROOT / "catalog" / "master_catalog.json"
 OUT_ROOT = pathlib.Path(r"C:\Users\adam\AppData\Local\Temp\fox40_blooper_fire_audit")
 CONTACTS_DIR = OUT_ROOT / "contacts_75"
 TEMP_DL_DIR = OUT_ROOT / "temp_dl"
@@ -105,7 +106,7 @@ def inspect_one(idx, total, asset):
             ff_cmd = [
                 "ffmpeg", "-y", "-ss", f"{ts:.2f}",
                 "-i", str(video_path),
-                "-vf", "yadif=0:-1:0,scale=480:270:force_original_aspect_ratio=decrease,pad=480:270:(ow-iw)/2:(oh-ih)/2",
+                "-vf", "bwdif=mode=0:parity=-1:deint=0,scale=480:270:force_original_aspect_ratio=decrease,pad=480:270:(ow-iw)/2:(oh-ih)/2",
                 "-frames:v", "1", "-q:v", "3",
                 str(f_jpg)
             ]

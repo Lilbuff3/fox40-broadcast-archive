@@ -37,9 +37,10 @@ def extract_natural_full_frame_16x9(mp4_path, ts_sec, focus_y=0.38):
     from our 59.94fps master MP4 at ts_sec, and crops cleanly to 16:9 (1280x720)
     with ZERO artificial contrast/saturation/skin-smoothing filters.
     """
+    ffmpeg_bin = shutil.which("ffmpeg") or r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"
     tmp_jpg = OUT_ROOT / f"_tmp_nat_{mp4_path.stem}_{ts_sec:.1f}.jpg"
     cmd = [
-        "ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+        ffmpeg_bin, "-y", "-hide_banner", "-loglevel", "error",
         "-ss", f"{ts_sec:.2f}", "-i", str(mp4_path),
         "-vf", "crop=1080:810:0:420",
         "-frames:v", "1", "-q:v", "2",
@@ -445,11 +446,11 @@ if __name__ == "__main__":
 
     print("Rendering Full YouTube Channel Page Mockups...", flush=True)
     dt_thumbs = [
-        (MTV_DIR / "MTV_01_YT_Thumb_1280x720.jpg", "Michael Jordan Uncut 1989 Practice | B-Roll & Breds", "1989 2vuy Master", "3:18"),
-        (MTV_DIR / "MTV_02_YT_Thumb_1280x720.jpg", "Kobe & Shaq Raw 2002 WCF Lockers | The Tunnel Tape", "2002 Betacam SP", "4:12"),
-        (MTV_DIR / "MTV_03_YT_Thumb_1280x720.jpg", "Howie Long & Bradshaw Off-Air | The Raw Feed", "1995 Studio Master", "2:54"),
-        (MTV_DIR / "MTV_04_YT_Thumb_1280x720.jpg", "Air Jordan 11 Mall Riot (2000) | B-Roll & Breds", "Foot Locker Tape", "3:40"),
-        (MTV_DIR / "MTV_05_YT_Thumb_1280x720.jpg", "1988 World Series Uncut Dugout | The Tunnel Tape", "Dodger Stadium", "4:05"),
+        (MTV_DIR / "MTV_01_YT_Thumb_1280x720.jpg", "1989 Michael Jordan Uncut Practice | B-Roll & Breds", "1989 2vuy Master", "3:18"),
+        (MTV_DIR / "MTV_02_YT_Thumb_1280x720.jpg", "2002 WCF Kobe & Shaq Locker Room | The Tunnel Tape", "2002 Betacam SP", "4:12"),
+        (MTV_DIR / "MTV_03_YT_Thumb_1280x720.jpg", "1990s Terry Bradshaw Studio Blooper | The Raw Feed", "1995 Studio Master", "2:54"),
+        (MTV_DIR / "MTV_04_YT_Thumb_1280x720.jpg", "2000 Air Jordan 11 Mall Stampede | B-Roll & Breds", "Foot Locker Tape", "3:40"),
+        (MTV_DIR / "MTV_05_YT_Thumb_1280x720.jpg", "1988 World Series Dodgers Dugout | The Tunnel Tape", "Dodger Stadium", "4:05"),
     ]
     render_channel_page(
         b_dt,
@@ -466,11 +467,11 @@ if __name__ == "__main__":
     )
 
     ucf_thumbs = [
-        (UCF_DIR / "UCF_01_YT_Thumb_1280x720.jpg", "Dorothea Puente 1988 Crime Scene | Case Files", "7-Reel Archive", "4:22"),
-        (UCF_DIR / "UCF_02_YT_Thumb_1280x720.jpg", "1991 Good Guys Hostage SWAT Raid | Case Files", "Nighttime Master", "3:48"),
-        (UCF_DIR / "UCF_03_YT_Thumb_1280x720.jpg", "Unsolved 2002 Jane Doe Cold Case | Case Files", "Uncompressed 2vuy", "3:15"),
-        (UCF_DIR / "UCF_04_YT_Thumb_1280x720.jpg", "1999 Sacramento Arson ATF Manhunt | Case Files", "June 1999 Master", "3:34"),
-        (UCF_DIR / "UCF_05_YT_Thumb_1280x720.jpg", "California Megafire DC-10 & Drone | Case Files", "2.7K Aerial Vault", "4:10"),
+        (UCF_DIR / "UCF_01_YT_Thumb_1280x720.jpg", "Dorothea Puente 1426 F St Dig | Case Files", "7-Reel Archive", "4:22"),
+        (UCF_DIR / "UCF_02_YT_Thumb_1280x720.jpg", "1991 Good Guys Hostage Siege SWAT | Case Files", "Nighttime Master", "3:48"),
+        (UCF_DIR / "UCF_03_YT_Thumb_1280x720.jpg", "2002 Jane Doe Border Operation | Case Files", "Uncompressed 2vuy", "3:15"),
+        (UCF_DIR / "UCF_04_YT_Thumb_1280x720.jpg", "1999 Synagogue Arson Wave Standoff | Case Files", "June 1999 Master", "3:34"),
+        (UCF_DIR / "UCF_05_YT_Thumb_1280x720.jpg", "2018 Camp Fire Paradise Drone Flight | Case Files", "2.7K Aerial Vault", "4:10"),
     ]
     render_channel_page(
         b_ucf,

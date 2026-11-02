@@ -7,6 +7,10 @@ from pathlib import Path
 import shutil
 
 GDRIVE_CMD = shutil.which("gdrive") or "gdrive"
+FFMPEG_CMD = shutil.which("ffmpeg") or r"C:\ProgramData\chocolatey\bin\ffmpeg.exe"
+FFPROBE_CMD = shutil.which("ffprobe") or r"C:\ProgramData\chocolatey\bin\ffprobe.exe"
+REPO_ROOT = Path(__file__).resolve().parent.parent
+MANIFEST_PATH = REPO_ROOT / "catalog" / "launch_wave1_manifest.json"
 STAGING_DIR = Path(r"C:\Users\adam\AppData\Local\Temp\fox40_wave1_staging")
 RAW_DIR = STAGING_DIR / "raw"
 OUT_DIR = STAGING_DIR / "ready_mp4"
@@ -204,10 +208,32 @@ def download_from_drive(drive_id, dest_path):
     return ok
 
 
+def resolve_compliant_title(job_slug, output_name):
+    """
+    Resolves compliant <52 character title from catalog/launch_wave1_manifest.json
+    based on job slug or deliverable output name.
+    """
+    if MANIFEST_PATH.exists():
+        try:
+            items = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+            for item in items:
+                item_id = item.get("id", "")
+                if item_id and (item_id in job_slug or item_id in output_name):
+                    return item.get("title", "")
+                if "Jordan" in job_slug and item_id == "MTV_01":
+                    return item.get("title", "")
+                if "Puente" in job_slug and item_id == "UCF_01":
+                    return item.get("title", "")
+        except Exception:
+            pass
+    clean = job_slug.replace("_", " ").strip()
+    return clean[:51]
+
+
 def build_filter(mode, label=None):
     if mode == "16x9_master":
         return (
-            "bwdif=mode=send_field:parity=auto:deint=all,"
+            "bwdif=mode=1:parity=-1:deint=0,"
             "split=2[bg][fg];"
             "[bg]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,boxblur=20:5,eq=brightness=-0.15[bgblur];"
             "[fg]scale=1440:1080:flags=lanczos,setsar=1[fgscale];"
@@ -216,7 +242,7 @@ def build_filter(mode, label=None):
     elif mode == "16x9_screener":
         safe_label = (label or "CALIFORNIA BROADCAST VAULT | ARCHIVAL SCREENER").replace(":", r"\:")
         return (
-            "bwdif=mode=send_field:parity=auto:deint=all,"
+            "bwdif=mode=1:parity=-1:deint=0,"
             "split=2[bg][fg];"
             "[bg]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,boxblur=20:5,eq=brightness=-0.15[bgblur];"
             "[fg]scale=1440:1080:flags=lanczos,setsar=1[fgscale];"
@@ -227,9 +253,10 @@ def build_filter(mode, label=None):
         )
     elif mode == "9x16_vertical":
         return (
-            "bwdif=mode=send_field:parity=auto:deint=all,"
+            "bwdif=mode=1:parity=-1:deint=0,"
             "split=2[bg][fg];"
-            "[bg]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=25:5,eq=brightness=-0.18[bgblur];"
+            "[bg]scale=270:480:force_original_aspect_ratio=increase,crop=270:480,"
+            "boxblur=10:2,scale=1080:1920,eq=brightness=-0.18[bgblur];"
             "[fg]scale=1080:810:flags=lanczos,setsar=1[fgscale];"
             "[bgblur][fgscale]overlay=(W-w)/2:(H-h)/2,format=yuv420p"
         )
@@ -243,7 +270,8 @@ def convert_clip(src_path, out_spec):
         return out_path
 
     vf = build_filter(out_spec["mode"], out_spec.get("label"))
-    cmd = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error"]
+    title = resolve_compliant_title(src_path.stem, out_spec["name"])
+    cmd = [FFMPEG_CMD, "-y", "-hide_banner", "-loglevel", "error"]
     if out_spec.get("ss"):
         cmd.extend(["-ss", str(out_spec["ss"])])
     cmd.extend(["-i", str(src_path)])
@@ -252,6 +280,7 @@ def convert_clip(src_path, out_spec):
 
     cmd.extend([
         "-vf", vf,
+        "-af", "aresample=48000,pan=stereo|c0=c0|c1=c0",
         "-r", "60000/1001",
         "-c:v", "libx264",
         "-preset", "veryfast",
@@ -259,6 +288,7 @@ def convert_clip(src_path, out_spec):
         "-c:a", "aac",
         "-b:a", "256k",
         "-ac", "2",
+        "-metadata", f"title={title}",
         "-movflags", "+faststart",
         str(out_path),
     ])
@@ -268,7 +298,7 @@ def convert_clip(src_path, out_spec):
 
 def verify_mp4(mp4_path):
     cmd = [
-        "ffprobe", "-v", "error",
+        FFPROBE_CMD, "-v", "error",
         "-select_streams", "v:0",
         "-show_entries", "stream=width,height,r_frame_rate,codec_name,duration",
         "-of", "json",
@@ -283,6 +313,7 @@ def verify_mp4(mp4_path):
             print(f"    Verified {mp4_path.name}: {s.get('width')}x{s.get('height')} @ {s.get('r_frame_rate')} fps ({s.get('codec_name')}, {float(s.get('duration', 0)):.1f}s, {mp4_path.stat().st_size / 1e6:.2f} MB)")
             return True
     return False
+
 
 
 def upload_to_drive(mp4_path):

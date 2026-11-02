@@ -6,7 +6,7 @@ Shared by Claude Code (`CLAUDE.md` -> `@AGENTS.md`) and Antigravity.
 
 This repository manages the cataloging, restoration (`59.94 fps` optical field-bob deinterlacing via `bwdif=mode=1`), narration, thumbnail generation, and multi-channel publishing pipeline for the **FOX40 Broadcast Archive** (`1,500+` digitized broadcast files from 1973–2018, including `103` historical, sports, true-crime, and California wildfire master reels).
 
-All source `.mov` / `.mp4` broadcast reels and rendered `59.94 fps` master deliverables live on Google Drive (`FOX40_Broadcast_Archive`, root ID `1Br9196213j3f22k9P0p6M-A91X1n0n1d`).
+All source `.mov` / `.mp4` broadcast reels and rendered `59.94 fps` master deliverables live on Google Drive (`FOX40_Broadcast_Archive`, root ID `16t_0OJihi6rkjzU24bkoj2WSsgphIVCx`).
 
 ---
 
@@ -61,19 +61,34 @@ Never revert to split-screens, red/orange clickbait circles over faces, or artif
 
 Use the `gdrive` CLI (`gdrive readonly ls <ID>`, `gdrive mutate upload <FILE> --parent <ID>`, `gdrive mutate update <FILE_ID> <LOCAL_FILE>`) to interact with Google Drive.
 
-### Top-Level Archive Folders
-| Folder Name | Google Drive ID | Contents |
-| :--- | :--- | :--- |
-| **`FOX40_Broadcast_Archive` (Root)** | `1Br9196213j3f22k9P0p6M-A91X1n0n1d` | Master archive root (`1,500+` files) |
-| `00_Archive_Catalog_and_Strategy` | `1Akplvvz_2C5taqNyqntn25lZ86L6Q7bI` | Master catalogs, audits & strategy docs |
-| `01_1970s_1980s_90s_Historical_Broadcast_Vault` | `1xP29U2G_gR6X-U_b_V-jB6p_T7A-R9p_` | 75 digitized Betacam & 2vuy master reels (`44.1 GB`) |
-| `02_Sacramento_Kings_and_Sports_Vault` | `1tB2L3y2E9P-y4rK8M0n_V-q9A1z_X3c_` | 2002 Kings WCF, MJ 1989, NFL & MLB reels |
-| `03_California_Wildfires_and_Disasters` | `1uC3M4z3F0Q-z5sL9N1o_W-r0B2a_Y4d_` | 13 wildfire reels (Carr Fire, DC-10 drops, 2.7K Paradise drones) |
-| `07_Curated_Reel_Clips_and_Highlights` | `1yG7Q8d7J4U-d9wP3R5s_A-v4F6e_C8h_` | 15 pre-extracted 60fps master clips |
-| **`08_Ready_For_YouTube_and_TikTok`** | `1n0tFUP97IYcJkpYrFCSkQDTO-9YrHq00` | Production-ready deliverables root |
-| `├── 00_Channel_Branding_Banners_and_Logos` | `1lo6Zd206o-Px5KgJOgfklvkpLQjNlcA_` | Avatars, banners & YouTube channel page mockups |
-| `├── 01_Master_Tape_Vault_Narrated_Shorts_and_Thumbs` | `1-OLu5WxkQIEDov_pwGEL-NYYDzVX7N01` | `@DeadstockTapes` 5 narrated 59.94fps MP4s, VCR OSD thumbs & covers |
-| `└── 02_Unaired_Case_Files_Narrated_Shorts_and_Thumbs` | `1GgaNg0HI578MvUlrY5Tmd0JZZgD712QO` | `@UnairedCaseFiles` 5 narrated 59.94fps MP4s, VCR OSD thumbs & covers |
+### Top-Level Archive Folders (Physical Ingest Structure)
+| Folder Name | Google Drive ID | Verified Status | Contents & Purpose |
+| :--- | :--- | :---: | :--- |
+| **`FOX40_Broadcast_Archive` (Root)** | `16t_0OJihi6rkjzU24bkoj2WSsgphIVCx` | **Live** | Master archive container (`1,981` files, `471.21 GB`) |
+| `00_Archive_Catalog_and_Strategy` | `1Akplvvz_2C5taqNyqntn25lZ86L6Q7bI` | **Live** | Catalogs, blueprints, ranking docs, posting packs |
+| `01_Documents_and_Scripts` | `1e60-kqb1vHWhSHEwmAqQOmCItiYhkwXM` | **Live** | Station brand styleguides, news scripts, presentations (5 files, 85.7 MB) |
+| `02_Graphics_and_Photos` | `1KLq_bL4hCNykDEhFEM3zG962vOxLyWCP` | **Live** | Lower thirds, bugs, logos, Sacramento Zoo photo archive (359 files, 1.13 GB) |
+| `03_Audio_and_Music` | `15U6_kIJ-xfGUrkEjKvwMKbJaPiZWvzWt` | **Live** | Stephen Arnold station sonic branding, news opens, stingers (38 files, 102.8 MB) |
+| `04_Project_Files` | `1reHoiMRGzf3QItKmml96fPDwtkjePPFq` | **Live** | FCPX, Premiere Pro, and Apple Motion project files (81 files, 8.57 MB) |
+| `05_Videos_Promos_and_Graphics` | `1jqEQ8Z16NlgiItvXP6occ_oP_ugj2uc8` | **Live** | Station opens, news packages, 1994 Northridge Quake (272 files, 112.18 GB) |
+| `06_Videos_Bloopers_and_Specials` | `1jA7TXGdzI9D5xYhW3hVEFX10vwi8d-bu` | **Live** | Dorothea Puente 1–7, Bloopers 1–3, Anniversary 2–7 (39 files, 33.79 GB) |
+| `07_Videos_News_and_Stories` | `1CrrSV9HIX34aqE20x579swGSsGEzlsSL` | **Live** | Mystery reels (Untitled 02–14), Camp Fire 4K drones (1,188 files, 323.83 GB) |
+| **`08_Ready_For_YouTube_and_TikTok`** | `1n0tFUP97IYcJkpYrFCSkQDTO-9YrHq00` | **Live** | Master deliverables, 15 Wave 1 clips, channel branding |
+| `├── 00_Channel_Branding_Banners_and_Logos` | `1lo6Zd206o-Px5KgJOgfklvkpLQjNlcA_` | **Live** | Avatars, banners & YouTube channel page mockups |
+| `├── 01_Master_Tape_Vault_Narrated_Shorts_and_Thumbs` | `1-OLu5WxkQIEDov_pwGEL-NYYDzVX7N01` | **Live** | `@DeadstockTapes` 5 narrated 59.94fps MP4s, VCR OSD thumbs & covers |
+| `└── 02_Unaired_Case_Files_Narrated_Shorts_and_Thumbs` | `1GgaNg0HI578MvUlrY5Tmd0JZZgD712QO` | **Live** | `@UnairedCaseFiles` 5 narrated 59.94fps MP4s, VCR OSD thumbs & covers |
+
+### Curated Editorial Virtual Vaults (Catalog Taxonomy)
+The 1,981 physical assets are organized into 8 curated virtual vaults in `catalog/master_catalog.json`:
+1. `Vault_00_Production_Elements_and_Projects` (418 assets) — Station graphics, audio beds, project timelines
+2. `Vault_01_True_Crime_Investigative` (61 assets) — Dorothea Puente (7 reels), Jaycee Dugard discovery, NorCal Rapist, Mario Garcia
+3. `Vault_02_Sports_Legends_and_Nostalgia` (96 assets) — 1989 Jordan practice, Kings Motta/Reynolds/Tisdale, 2002 WCF, sneaker riots
+4. `Vault_03_Historic_Disasters_and_Environment` (50 assets) — 2018 Camp Fire drone flights (7 reels), 1994 Northridge Earthquake
+5. `Vault_04_California_and_National_Politics` (73 assets) — 2003 Recall Eve (Davis/Schwarzenegger), Feinstein, Pete Wilson, Buttigieg
+6. `Vault_05_Station_History_Bloopers_and_Retro_TV` (43 assets) — Newsroom bloopers (3 reels), 50th Anniversary specials
+7. `Vault_06_Scenic_Stock_and_B_Roll` (78 assets) — Sacramento skyline, Tower Bridge, agricultural b-roll
+8. `Vault_07_Daily_Broadcast_News_Archive` (1,162 assets) — Comprehensive 2018–2020 daily local news packages
+
 
 ### Launch Wave 1 Deliverable Drive IDs (`08_Ready_For_YouTube_and_TikTok`)
 

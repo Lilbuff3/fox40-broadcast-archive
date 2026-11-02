@@ -1,7 +1,8 @@
 import pathlib
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
-OUT_DIR = pathlib.Path(r"C:\Users\adam\.gemini\antigravity\brain\4d763763-2f56-420d-8763-3ca83f06e1ef")
+REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
+OUT_DIR = REPO_ROOT / "assets" / "branding"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # 4x supersampling for razor-sharp anti-aliased vector quality
@@ -335,12 +336,8 @@ def build_comparison_board(paths):
 
 
 if __name__ == "__main__":
-    p1 = build_mtv_logo_v1_geometric_m()
-    p2 = build_mtv_logo_v2_dual_spool()
     p3 = build_ucf_logo_v1_viewfinder()
     p4 = build_ucf_logo_v2_monogram()
-    b1, b2 = build_modern_youtube_banners(p1, p3)
-    comp = build_comparison_board([p1, p2, p3, p4])
-    print("Generated modern 2026 logos & banners:")
-    for f in (p1, p2, p3, p4, b1, b2, comp):
+    print("Generated modern 2026 Unaired Case Files logos in assets/branding/:")
+    for f in (p3, p4):
         print(" ->", f)

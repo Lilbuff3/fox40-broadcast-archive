@@ -10,7 +10,7 @@ venv/
 .env
 .env.*
 
-# Heavy raw & rendered video binaries (stored on Google Drive 1Br9196213j3f22k9P0p6M-A91X1n0n1d)
+# Heavy raw & rendered video binaries (stored on Google Drive 16t_0OJihi6rkjzU24bkoj2WSsgphIVCx)
 *.mov
 *.mp4
 *.mkv

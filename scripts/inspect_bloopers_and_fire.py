@@ -72,7 +72,7 @@ def inspect_target(slug, file_id, expected_name):
         ff_cmd = [
             "ffmpeg", "-y", "-ss", f"{ts:.2f}",
             "-i", str(video_path),
-            "-vf", "yadif=0:-1:0,scale=640:360:force_original_aspect_ratio=decrease,pad=640:360:(ow-iw)/2:(oh-ih)/2",
+            "-vf", "bwdif=mode=0:parity=-1:deint=0,scale=640:360:force_original_aspect_ratio=decrease,pad=640:360:(ow-iw)/2:(oh-ih)/2",
             "-frames:v", "1", "-q:v", "2",
             str(out_jpg)
         ]
