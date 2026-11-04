@@ -324,7 +324,8 @@ VIDEOS = [
             "police uncovered seven bodies buried in the garden of boarding-house landlady Dorothea Puente. "
             "This raw archival tape captures coroners carrying body bags from her yard while detectives "
             "dig through the soil. Inside the courtroom, prosecutors wheeled in a three-dimensional scale "
-            "model of the house as Puente sat in silence, dressed like a harmless grandmother on trial for murder."
+            "model of the house as Puente sat in silence, dressed like a harmless grandmother on trial for murder. "
+            "Follow Unaired Case Files for declassified crime archives."
         ),
         "segments": [
             {
@@ -385,7 +386,8 @@ VIDEOS = [
             "Sacramento and take forty-one people hostage—one of the largest hostage standoffs in American "
             "history. Found hidden inside an unlabeled reporter tape, our night cameras zoomed in on "
             "hostages tied together right behind the glass front doors, moments before Sacramento Sheriff "
-            "SWAT teams detonated flashbangs and stormed the entrance in a cloud of smoke."
+            "SWAT teams detonated flashbangs and stormed the entrance in a cloud of smoke. "
+            "Follow Unaired Case Files for declassified crime archives."
         ),
         "segments": [
             {
@@ -440,7 +442,8 @@ VIDEOS = [
             "forensic technique. Preserved on an uncompressed studio master tape, watch a forensic sculptor "
             "build a lifelike clay reconstruction directly over the victim's skull structure, before "
             "investigators morphed the sculpture into a composite photograph hoping someone watching "
-            "at home would recognize her face."
+            "at home would recognize her face. "
+            "Follow Unaired Case Files for declassified cold case tapes."
         ),
         "segments": [
             {
@@ -495,7 +498,8 @@ VIDEOS = [
             "firefighters battling the nighttime blaze and the smoke-scarred inscription on the "
             "sanctuary wall reading Love Thy Neighbor As Thyself. Weeks later, federal ATF agents "
             "raided a Northern California property and brought the extremist brothers responsible "
-            "into court in handcuffs."
+            "into court in handcuffs. "
+            "Follow Unaired Case Files for declassified terror investigations."
         ),
         "segments": [
             {
@@ -557,7 +561,8 @@ VIDEOS = [
             "flames engulfing a Napa Valley estate at night, and a top-down helicopter view of a "
             "DC-10 supertanker dropping a river of red retardant across a ridge. Then, see what "
             "remained five days after the 2018 Camp Fire—captured in raw two-point-seven-K drone "
-            "footage over the leveled town of Paradise."
+            "footage over the leveled town of Paradise. "
+            "Follow Unaired Case Files for historical California disaster reels."
         ),
         "segments": [
             {
@@ -701,7 +706,7 @@ def generate_vo_and_ass(vid_spec, vo_mp3_path, srt_path, ass_path):
         "",
         "[V4+ Styles]",
         "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
-        f"Style: Default,Arial,58,&H00FFFFFF,{accent_ass},&H00000000,&H96000000,-1,0,0,0,100,100,0,0,1,4.5,2.0,2,60,60,360,1",
+        f"Style: Default,Arial,54,&H00FFFFFF,{accent_ass},&H00000000,&H96000000,-1,0,0,0,100,100,0,0,1,4.5,2.0,2,80,140,480,1",
         "",
         "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
@@ -722,8 +727,8 @@ def generate_vo_and_ass(vid_spec, vo_mp3_path, srt_path, ass_path):
         ts_idx = lines.index(ts_line)
         txt = " ".join(lines[ts_idx + 1:])
         t_start_str, t_end_str = ts_line.split("-->")
-        t0 = parse_srt_ts(t_start_str)
-        t1 = parse_srt_ts(t_end_str)
+        t0 = parse_srt_ts(t_start_str) + 0.60
+        t1 = parse_srt_ts(t_end_str) + 0.60
         dur = max(0.2, t1 - t0)
 
         words = txt.split()
@@ -755,8 +760,7 @@ def render_final_short(vid_spec, concat_mp4, vo_mp3, ass_path, out_mp4):
     badge = esc_drawtext(vid_spec["badge_text"])
     title = esc_drawtext(vid_spec["header_title"])
     sub = esc_drawtext(vid_spec["header_sub"])
-    tele = vid_spec["telestration"]
-    tele_lbl = esc_drawtext(tele["label"])
+    tc_str = esc_drawtext(vid_spec.get("thumb_tc", "TC 00:00:00:00"))
 
     # Convert Windows path for FFmpeg subtitles filter: C:/Users/... with escaped colon
     ass_ff_path = str(ass_path).replace("\\", "/").replace(":", "\\:")
@@ -773,17 +777,17 @@ def render_final_short(vid_spec, concat_mp4, vo_mp3, ass_path, out_mp4):
         f"drawtext=fontfile='C\\:/Windows/Fonts/arialbd.ttf':text='{badge}':fontcolor=0x{accent}:fontsize=28:x=76:y=165,"
         f"drawtext=fontfile='C\\:/Windows/Fonts/arialbd.ttf':text='{title}':fontcolor=white:fontsize=46:x=76:y=212,"
         f"drawtext=fontfile='C\\:/Windows/Fonts/arialbd.ttf':text='{sub}':fontcolor=0x{sub_hex}:fontsize=25:x=76:y=282,"
-        f"drawbox=x={tele['x']}:y={tele['y']}:w={tele['w']}:h={tele['h']}:color=0x{accent}@0.92:t=6:enable='between(t,0.2,3.5)',"
-        f"drawbox=x={tele['x']}:y={tele['y']-44}:w={tele['w']}:h=44:color=0x{accent}@0.92:t=fill:enable='between(t,0.2,3.5)',"
-        f"drawtext=fontfile='C\\:/Windows/Fonts/arialbd.ttf':text='{tele_lbl}':fontcolor=black:fontsize=24:x={tele['x']+14}:y={tele['y']-34}:enable='between(t,0.2,3.5)',"
+        "drawbox=x=48:y=436:w=280:h=90:color=black@0.45:t=fill,"
+        "drawtext=fontfile='C\\:/Windows/Fonts/lucon.ttf':text='PLAY':fontcolor=white:fontsize=32:x=62:y=446:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
+        f"drawtext=fontfile='C\\:/Windows/Fonts/lucon.ttf':text='{tc_str}':fontcolor=white:fontsize=32:x=62:y=486:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
         "drawbox=x=40:y=1255:w=1000:h=52:color=black@0.70:t=fill,"
         f"drawtext=fontfile='C\\:/Windows/Fonts/consolab.ttf':text='59.94 FPS OPTICAL DEINTERLACE  |  ORIGINAL BROADCAST MASTER':fontcolor=0x{accent}:fontsize=24:x=65:y=1270,"
         f"ass='{ass_ff_path}',format=yuv420p[vout]"
     )
 
     af = (
-        "[0:a]volume=0.28[a_orig];"
-        "[1:a]aresample=48000,pan=stereo|c0=c0|c1=c0,volume=1.35[a_vo];"
+        "[0:a]volume='if(lt(t,0.7),0.85,0.26)':eval=frame[a_orig];"
+        "[1:a]aresample=48000,adelay=600|600,pan=stereo|c0=c0|c1=c0,volume=1.35[a_vo];"
         "[a_orig][a_vo]amix=inputs=2:duration=first:dropout_transition=2:normalize=0,"
         "alimiter=limit=0.95[aout]"
     )
